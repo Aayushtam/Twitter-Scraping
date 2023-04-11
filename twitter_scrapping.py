@@ -23,6 +23,8 @@ for url in urls:
     html = driver.execute_script("return document.documentElement.outerHTML")
     # using beautiful soup for fetching data 
     soup = BeautifulSoup(html, "html.parser")
+    
+    #fetching the required data from selected tags
     bio_div = soup.find("div", {"class" : "css-901oao r-1nao33i r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0"})
     follow_count = soup.find("div", {"class" : "css-1dbjc4n r-13awgt0 r-18u37iz r-1w6e6rj"})
     location = soup.find("span", {"class" : "css-901oao css-16my406 r-1bwzh9t r-4qtqp9 r-poiln3 r-1b7u577 r-bcqeeo r-qvutc0"})
