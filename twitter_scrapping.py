@@ -8,7 +8,7 @@ urls = lk.iloc[:, -1].values
 
 # creating lists
 bios = []
-follower_follower_list = []
+follower_following_list = []
 locations = []
 websites = []
 
@@ -40,9 +40,9 @@ for url in urls:
     #adding follower and following counts in list
     if follow_count is not None:
         cn = follow_count.text
-        follower_follower_list.append(cn)
+        follower_following_list.append(cn)
     else:
-        follower_follower_list.append("not found")
+        follower_following_list.append("not found")
 
     #adding location to list
     if location is not None:
@@ -62,7 +62,7 @@ for url in urls:
 followers = []
 following = []
 
-for item in follower_follower_list:
+for item in follower_following_list:
     # Split the string on the "Following" and "Followers" text
     parts = item.split("Following")
     # Check if there is at least one "Following" in the string
