@@ -6,16 +6,22 @@ from selenium import webdriver
 lk = pd.read_csv("C:/Users/arjun/Downloads/twitter_links.csv")
 urls = lk.iloc[:, -1].values
 
+# creating lists
 bios = []
 follower_follower_list = []
 locations = []
 websites = []
 
+#fetching data from each url 
 for url in urls:
+    # using selenium to load url 
     driver = webdriver.Chrome()
     driver.get(url)
-    driver.implicitly_wait(50)
+    # waiting for 5 sec to load url
+    driver.implicitly_wait(5)
+    # Getting the html content of page in string 
     html = driver.execute_script("return document.documentElement.outerHTML")
+    # using beautiful soup for fetching data 
     soup = BeautifulSoup(html, "html.parser")
     bio_div = soup.find("div", {"class" : "css-901oao r-1nao33i r-37j5jr r-a023e6 r-16dba41 r-rjixqe r-bcqeeo r-qvutc0"})
     follow_count = soup.find("div", {"class" : "css-1dbjc4n r-13awgt0 r-18u37iz r-1w6e6rj"})
@@ -80,6 +86,7 @@ op = {
 }
 
 df = pd.DataFrame(op, columns=['Bio', 'Follower Count', 'Following count', 'Location', 'Websites'])
-df.head()
+
+# Generating output in csv format 
 
 df.to_csv('output1.csv', index=False)
